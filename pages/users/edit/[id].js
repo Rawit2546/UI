@@ -8,6 +8,7 @@ export default function EditUser() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [avatar, setAvatar] = useState(""); // state เก็บรูปภาพ
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
 
@@ -22,6 +23,7 @@ export default function EditUser() {
         setFirstName(user.first_name);
         setLastName(user.last_name);
         setEmail(user.email);
+        setAvatar(user.avatar); // กำหนดรูปภาพ
       });
   }, [id]);
 
@@ -66,6 +68,18 @@ export default function EditUser() {
         <h1 className="text-3xl font-extrabold text-center mb-8 text-indigo-700">
           Edit User
         </h1>
+
+        {/* แสดงรูปภาพผู้ใช้ */}
+        {avatar && (
+          <div className="flex justify-center mb-6">
+            <img
+              src={avatar}
+              alt="User Avatar"
+              className="w-24 h-24 rounded-full shadow-md"
+            />
+          </div>
+        )}
+
         <form onSubmit={handleUpdate} className="space-y-6">
           <input
             type="text"
